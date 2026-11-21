@@ -72,6 +72,23 @@ Run it locally with:
 MAKEFUN_OUTPUT_DIR=/tmp/ni21-out python3 main.py
 ```
 
+## Verification
+
+To confirm the copy is faithful, run the program once more into a
+fresh folder and compare the digests of the source and the copy:
+
+```
+MAKEFUN_OUTPUT_DIR=/tmp/ni21-check python3 main.py
+sha256sum entry.png /tmp/ni21-check/entry.png
+```
+
+The two digests must be identical, and both must match the SHA-256
+recorded under "The image" below. The first eight bytes of the copy
+must read `89 50 4E 47 0D 0A 1A 0A`, the PNG signature. If `entry.png`
+is missing beside `main.py`, or a copy fails any of these checks, the
+program stops with exit code 1 and a plain-language error instead of
+leaving behind a bad copy.
+
 ## The image
 
 - File: `entry.png`
